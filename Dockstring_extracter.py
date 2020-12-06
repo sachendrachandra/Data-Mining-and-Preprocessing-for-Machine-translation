@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Parse Python source code and get or print docstrings."""
 
 __all__ = ('get_docstrings', 'print_docstrings')
@@ -120,14 +119,6 @@ if __name__ == '__main__':
         except:
             pass
 
-        # with open("/home/sachendra/split/"+file) as f:
-        #     try:
-        #         tokens = tokenize.generate_tokens(f.readline)
-        #         for token in tokens:
-        #             ci.append(token.string)
-        #             # ci2.append(str(token.type)+"_"+str(ci.count(token.type)))
-        #     except:
-        #         pass
 
         with open("/home/sachendra/TSE/split2/"+file,'r') as f:
             # do_file("/home/sachendra/split/"+file)
