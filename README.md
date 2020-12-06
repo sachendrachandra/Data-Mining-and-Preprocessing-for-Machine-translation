@@ -26,6 +26,6 @@ The project is mainly divide into 4 parts:
  
  The code for doing the above process is present in the file "Dockstring_extracter.py". 
 
-The data has been compressed into file titled data2.tar.gz
+The data has been compressed into file titled data2.tar.xz
 The file "data2.json" can be seen to understand the format of data collected.
 The total (code, natural language comment) pair collected are 222513
