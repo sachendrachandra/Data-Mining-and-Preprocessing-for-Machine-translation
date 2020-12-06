@@ -29,13 +29,7 @@ for i in range(4,8):
 # clone the repositories
 print(len(df))
 print("-----------------------------------------------------------------")
-# print(df[0:10])
-# f=open("list2",'w')
-# print("Cloning...")
 
-# for i in range(len(df)):
-#         f.write(df['URL'][i])
-#         f.write('\n')
 # Opening a file 
 file = open("list2","r") 
 Counter = 0
