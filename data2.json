@@ -1,0 +1,46 @@
+{
+    "code": " __call__(self, examples: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:\n        input_ids = [example[\"input_ids\"] for example in examples]\n        input_ids = _collate_batch(input_ids, self.tokenizer)\n        input_ids, labels, attention_mask = self.mask_tokens(input_ids)\n\n        token_type_ids = [example[\"token_type_ids\"] for example in examples]\n        #Comment Placeholder\n        token_type_ids = pad_sequence(token_type_ids, batch_first=True, padding_value=self.tokenizer.pad_token_id)\n\n        sop_label_list = [example[\"sentence_order_label\"] for example in examples]\n        sentence_order_label = torch.stack(sop_label_list)\n\n        return {\n            \"input_ids\": input_ids,\n            \"labels\": labels,\n            \"attention_mask\": attention_mask,\n            \"token_type_ids\": token_type_ids,\n            \"sentence_order_label\": sentence_order_label,\n        }\n\n",
+    "nl_comment": [
+        "# size of segment_ids varied because randomness, padding zero to the end as the original implementation"
+    ]
+}{
+    "code": " _do_use_weight_decay(self, param_name):\n        '''DocString Placeholder'''\n        if self.weight_decay_rate == 0:\n            return False\n\n        if self._include_in_weight_decay:\n            for r in self._include_in_weight_decay:\n                if re.search(r, param_name) is not None:\n                    return True\n\n        if self._exclude_from_weight_decay:\n            for r in self._exclude_from_weight_decay:\n                if re.search(r, param_name) is not None:\n                    return False\n        return True\n\n\n#Comment Placeholder\nclass GradientAccumulator(object):\n    '''DocString Placeholder'''\n\n    #Comment Placeholder\n    #Comment Placeholder\n    #Comment Placeholder\n\n",
+    "nl_comment": [
+        "# Extracted from https://github.com/OpenNMT/OpenNMT-tf/blob/master/opennmt/optimizers/utils.py",
+        "# We use the ON_READ synchronization policy so that no synchronization is",
+        "# performed on assignment. To get the value, we call .value() which returns the",
+        "# value on the current replica without synchronization."
+    ]
+}{
+    "code": " test_tokenization_base_hard_symbols(self):\n        symbols = 'This is a very long text with a lot of weird characters, such as: . , ~ ? ( ) \" [ ] ! : - . Also we will add words that should not exsist and be tokenized to <unk>, such as saoneuhaoesuth'\n        original_tokenizer_encodings = [\n            0,\n            3293,\n            83,\n            10,\n            4552,\n            4989,\n            7986,\n            678,\n            10,\n            5915,\n            111,\n            179459,\n            124850,\n            4,\n            6044,\n            237,\n            12,\n            6,\n            5,\n            6,\n            4,\n            6780,\n            705,\n            15,\n            1388,\n            44,\n            378,\n            10114,\n            711,\n            152,\n            20,\n            6,\n            5,\n            22376,\n            642,\n            1221,\n            15190,\n            34153,\n            450,\n            5608,\n            959,\n            1119,\n            57702,\n            136,\n            186,\n            47,\n            1098,\n            29367,\n            47,\n            #Comment Placeholder\n            #Comment Placeholder\n            #Comment Placeholder\n            3,  #Comment Placeholder\n            6,  #Comment Placeholder\n            4,\n            6044,\n            237,\n            6284,\n            50901,\n            528,\n            31,\n            90,\n            34,\n            927,\n            2,\n        ]\n        #Comment Placeholder\n        #Comment Placeholder\n        #Comment Placeholder\n\n        self.assertListEqual(original_tokenizer_encodings, self.big_tokenizer.encode(symbols))\n",
+    "nl_comment": [
+        "# 4426, # What fairseq tokenizes from \"<unk>\": \"_<\"",
+        "# 3678, # What fairseq tokenizes from \"<unk>\": \"unk\"",
+        "# 2740, # What fairseq tokenizes from \"<unk>\": \">\"",
+        "# What we tokenize from \"<unk>\": \"<unk>\"",
+        "# Residue from the tokenization: an extra sentencepiece underline",
+        "# xlmr = torch.hub.load('pytorch/fairseq', 'xlmr.base')  # xlmr.large has same tokenizer",
+        "# xlmr.eval()",
+        "# xlmr.encode(symbols)"
+    ]
+}{
+    "code": " setUp(self):\n        super().setUp()\n\n        #Comment Placeholder\n        tokenizer = XLMRobertaTokenizer(SAMPLE_VOCAB, keep_accents=True)\n        tokenizer.save_pretrained(self.tmpdirname)\n\n",
+    "nl_comment": [
+        "# We have a SentencePiece fixture for testing"
+    ]
+}{
+    "code": " max_len_sentences_pair(self, value) -> int:\n        #Comment Placeholder\n        if value == self.model_max_length - self.num_special_tokens_to_add(pair=True) and self.verbose:\n            if not self.deprecation_warnings.get(\"max_len_sentences_pair\", False):\n                logger.warning(\n                    \"Setting 'max_len_sentences_pair' is now deprecated. \" \"This value is automatically set up.\"\n                )\n            self.deprecation_warnings[\"max_len_sentences_pair\"] = True\n        else:\n            raise ValueError(\n                \"Setting 'max_len_sentences_pair' is now deprecated. \" \"This value is automatically set up.\"\n            )\n\n",
+    "nl_comment": [
+        "# For backward compatibility, allow to try to setup 'max_len_sentences_pair'."
+    ]
+}{
+    "code": " mask_tokens(self, inputs: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:\n        '''DocString Placeholder'''\n        if self.tokenizer.mask_token is None:\n            raise ValueError(\n                \"This tokenizer does not have a mask token which is necessary for masked language modeling. Remove the --mlm flag if you want to use this tokenizer.\"\n            )\n\n        labels = inputs.clone()\n        #Comment Placeholder",
+    "nl_comment": [
+        "# We sample a few tokens in each sequence for masked-LM training (with probability args.mlm_probability "
+    ]
+}{
+    "code": " __init__(self, config):\n        super().__init__(config)\n        #Comment Placeholder\n        config = copy.deepcopy(config)\n        config.is_decoder = True\n        config.is_encoder_decoder = False\n        self.decoder = ProphetNetDecoder(config)\n\n        self.padding_idx = config.pad_token_id\n        self.disable_ngram_loss = config.disable_ngram_loss\n\n        self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)\n\n        self.init_weights()\n\n",
+    "nl_comment": [
+        "# set config for CLM"
+    ]
+}
