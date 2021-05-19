@@ -1,4 +1,4 @@
-# TSE_mini_project_1
+# Data Collection and Preprocessing for a Neural Machine Translation Model(NMT)
 
 This is a part of the Topics in Software Engineering course Project offered at IISc Bangalore by Associate Professor Aditya Kanade and Professor Shirish Shevade.
 
